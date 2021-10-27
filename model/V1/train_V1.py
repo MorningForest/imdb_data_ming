@@ -10,10 +10,10 @@ from fastNLP import Trainer, L1Loss, Callback
 from fastNLP import SequentialSampler, DataSetIter
 import argparse
 import torch
-import fitlog
+# import fitlog
 
 ## fitlog日志
-fitlog.set_log_dir("logs/")
+# fitlog.set_log_dir("logs/")
 
 parse = argparse.ArgumentParser()
 parse.add_argument('--method', required=True, type=str)
@@ -23,7 +23,7 @@ args.lr = 0.01
 args.batch_size = 32
 args.n_epoch = 20
 
-fitlog.add_hyper(args)
+# fitlog.add_hyper(args)
 path = r'../../data/movie_metadata.csv'
 log_dir = r'./log/log'
 paths = {'train': '../../data/train.csv',
@@ -88,7 +88,7 @@ if args.method not in ['rel', 'cluster', 'cls']:
 # print(rules)
 
 if args.method == 'rel':
-    min_support = 0.01 #支持度
+    min_support = 100 #支持度
     conf = 0.1 #置信度
     ## 关联的列
     cols_name = ['color', 'director_name', 'genres', 'actor_1_name',
@@ -99,9 +99,11 @@ if args.method == 'rel':
     data_info(log_dir).describe(df)
     inp = CorrelationPipe().process(df, cols_name)
     ap = Apriori(inp, log_dir)
-    freq, sp = ap.apriori(min_support=0.01)
-    # rules = ap.asscoiation_rules(freq, sp, conf)
+    freq, sp = ap.apriori(min_support=min_support)
+    rules = ap.asscoiation_rules(freq, sp, conf)
     print(freq)
+    print(rules)
+
 if args.method == 'cluster':
     n_clus_low, n_clus_high = 2, 3
     demo = False

@@ -5,7 +5,7 @@
       <paths name="jwhong@10.176.52.104:20020">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
@@ -73,6 +73,13 @@
         </serverdata>
       </paths>
       <paths name="jwhong@10.176.52.119:20004 (2)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="jwhong@10.176.52.119:20004 (3)">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

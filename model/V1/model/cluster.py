@@ -58,7 +58,7 @@ class analyse_cluster:
 
     def describe(self, inp, cluster_label, best_k):
         cluster_label = pd.DataFrame(cluster_label, columns=['cluster'])
-        merge_data = pd.concat([inp, cluster_label], axis=1)
+        merge_data = pd.concat([inp, cluster_label], axis=1).fillna(value=0)
         ##聚类的样本量和占比
         clustering_count = pd.DataFrame(merge_data['color'].groupby(merge_data['cluster']).count()).T.rename({'color': 'count'})
         print(clustering_count)

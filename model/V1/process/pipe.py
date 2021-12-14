@@ -49,10 +49,11 @@ class MVLoader(Loader):
                 break
             ds.append(Instance(**dict))
         return ds, df
+
     def load(self, paths) -> DataBundle:
         datasets = {}
         for name, path in paths.items():
-            ds, _ =self._load(path)
+            ds, _ = self._load(path)
             datasets[name] = ds
         data_bundle = DataBundle(datasets=datasets)
         return data_bundle
@@ -113,7 +114,6 @@ class ClusterPipe:
         #     words = df[col].unique()
         ##独热码
         ohmat = pd.get_dummies(df[cols])
-        print(ohmat)
         scale_mat = df[cols_num]
         scaler_model = MinMaxScaler()
         data_scale = scaler_model.fit_transform(scale_mat)

@@ -114,7 +114,8 @@ class Apriori:
                         rule = (freq_set, sub_set - freq_set, frq, conf)
                         if conf >= min_conf:
                             print(freq_set, "-->", sub_set - freq_set, 'frq:', frq, 'conf:', conf)
-                            fp.write(str(freq_set) + "-->" + str(sub_set - freq_set) + 'frq:' + str(frq) + 'conf:' +str(conf)+'\n')
+                            fp.write(str(freq_set) + "\t" + str(sub_set - freq_set) + '\t'
+                                     + str(frq) + '\t' + str(conf) + '\n')
                             rules.append(rule)
         fp.close()
         return rules

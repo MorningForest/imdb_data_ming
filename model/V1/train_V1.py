@@ -88,22 +88,20 @@ if args.method not in ['rel', 'cluster', 'cls']:
 # print(rules)
 
 if args.method == 'rel':
-    min_support = 100 #支持度
+    min_support = 0.01 #支持度
     conf = 0.1 #置信度
     ## 关联的列
-    cols_name = ['color', 'director_name', 'genres', 'actor_1_name',
-                 'actor_2_name', 'actor_3_name', 'language', 'country',
+    cols_name = ['director_name', 'genres', 'actor_1_name',
+                'language', 'country',
                  'content_rating']
     demo = False
     _, df = MVLoader(demo)._load(path)
     data_info(log_dir).describe(df)
     inp = CorrelationPipe().process(df, cols_name)
     ap = Apriori(inp, log_dir)
-    freq, sp = ap.apriori(min_support=min_support)
+    freq, sp = ap.apriori(min_support=0.01)
     rules = ap.asscoiation_rules(freq, sp, conf)
     print(freq)
-    print(rules)
-
 if args.method == 'cluster':
     n_clus_low, n_clus_high = 2, 3
     demo = False
